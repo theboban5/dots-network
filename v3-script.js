@@ -169,16 +169,18 @@ interviewData.forEach(function(interview) {
     }
 });
 
-// Color coding based on interview count
-function getColorByInterviewCount(count) {
+// Heat map color scheme - red for high density
+function getHeatMapColor(count) {
     if (count >= 4) {
-        return am5.color(0x0047B3); // Darkest blue
+        return am5.color(0xFF0000); // Bright red for highest density
     } else if (count === 3) {
-        return am5.color(0x227CFF);
+        return am5.color(0xFF6600); // Orange-red
     } else if (count === 2) {
-        return am5.color(0x5DB3FF);
+        return am5.color(0xFFAA00); // Yellow-orange
+    } else if (count === 1) {
+        return am5.color(0x00FF00); // Green for low density
     } else {
-        return am5.color(0xA6D8FF); // Lightest blue
+        return am5.color(0x333333); // Dark gray for no connections
     }
 }
 
@@ -216,12 +218,42 @@ function showInterviewModal(countryCode, countryName, interviews) {
     modal.style.display = "flex";
 }
 
-// Initialize 3D map
+// Create heat map legend
+function createHeatMapLegend() {
+    var legend = document.createElement("div");
+    legend.className = "heat-legend";
+    legend.innerHTML = `
+        <h3>Connection Density</h3>
+        <div class="heat-legend-item">
+            <div class="heat-legend-color" style="background: #FF0000;"></div>
+            <div class="heat-legend-text">4+ connections (High)</div>
+        </div>
+        <div class="heat-legend-item">
+            <div class="heat-legend-color" style="background: #FF6600;"></div>
+            <div class="heat-legend-text">3 connections</div>
+        </div>
+        <div class="heat-legend-item">
+            <div class="heat-legend-color" style="background: #FFAA00;"></div>
+            <div class="heat-legend-text">2 connections</div>
+        </div>
+        <div class="heat-legend-item">
+            <div class="heat-legend-color" style="background: #00FF00;"></div>
+            <div class="heat-legend-text">1 connection (Low)</div>
+        </div>
+        <div class="heat-legend-item">
+            <div class="heat-legend-color" style="background: #333333;"></div>
+            <div class="heat-legend-text">No connections</div>
+        </div>
+    `;
+    document.getElementById("chartdiv").appendChild(legend);
+}
+
+// Initialize heat map
 am5.ready(function() {
     var root = am5.Root.new("chartdiv");
     root.setThemes([am5themes_Animated.new(root)]);
 
-    // Create 3D chart with orthographic projection
+    // Create 3D chart with orthographic projection for heat map
     var chart = root.container.children.push(
         am5map.MapChart.new(root, {
             panX: "rotateX",
@@ -247,33 +279,39 @@ am5.ready(function() {
         })
     );
 
-    // Default styling for 3D globe
+    // Heat map styling - more vibrant colors
     polygonSeries.mapPolygons.template.setAll({
-        tooltipText: "{name}",
+        tooltipText: "{name}: {value} connections",
         toggleKey: "active",
         interactive: true,
-        fill: am5.color(0xD3D3D3)  // Light grey default
+        fill: am5.color(0x333333),  // Dark base
+        stroke: am5.color(0x666666),
+        strokeWidth: 1
     });
 
-    // Hover state
+    // Enhanced hover state for heat map
     polygonSeries.mapPolygons.template.states.create("hover", {
-        fill: am5.color(0x677935)  // Green hover
+        fill: am5.color(0xFFFFFF),  // White highlight
+        stroke: am5.color(0x000000),
+        strokeWidth: 3
     });
 
     // Active state
     polygonSeries.mapPolygons.template.states.create("active", {
-        fill: am5.color(0x677935)  // Green active
+        fill: am5.color(0xFFFFFF),  // White highlight
+        stroke: am5.color(0x000000),
+        strokeWidth: 3
     });
 
-    // Apply colors to countries
+    // Apply heat map colors
     polygonSeries.mapPolygons.template.adapters.add("fill", function(fill, target) {
         var dataItem = target.dataItem;
         var id = dataItem.get("id");
         
         if (countryInterviews[id]) {
-            return getColorByInterviewCount(countryInterviews[id]);
+            return getHeatMapColor(countryInterviews[id]);
         }
-        return am5.color(0xDDDDDD); // Light grey for no interviews
+        return am5.color(0x333333); // Dark gray for no connections
     });
 
     // Click event handling
@@ -289,18 +327,16 @@ am5.ready(function() {
         }
     });
 
-    // Add enhanced zoom control for 3D globe
+    // Add enhanced zoom control for heat map
     var zoomControl = chart.set("zoomControl", am5map.ZoomControl.new(root, {
-        // Enhanced zoom settings
         wheelZoomable: true,
         wheelZoomSpeed: 0.5,
         wheelZoomFactor: 1.1,
-        // Touchpad support
         touchZoomable: true,
         touchZoomSpeed: 0.3
     }));
     
-    // Add home button for 3D globe
+    // Add home button for heat map
     var homeButton = chart.children.push(am5.Button.new(root, {
         paddingTop: 10,
         paddingBottom: 10,
@@ -323,60 +359,12 @@ am5.ready(function() {
         chart.invalidateProjection();
     });
     
-    // Add zoom in/out buttons for easier access
-    var zoomInButton = chart.children.push(am5.Button.new(root, {
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingLeft: 12,
-        paddingRight: 12,
-        background: am5.Rectangle.new(root, {
-            fill: am5.color("#00ccff"),
-            cornerRadius: 5
-        })
-    }));
-    
-    zoomInButton.label.set("text", "Zoom In");
-    zoomInButton.label.set("fill", am5.color("#000000"));
-    zoomInButton.label.set("fontSize", 12);
-    
-    zoomInButton.events.on("click", function() {
-        var currentProjection = chart.get("projection");
-        if (currentProjection && currentProjection.scale) {
-            currentProjection.scale = currentProjection.scale * 1.5;
-            chart.invalidateProjection();
-        }
-    });
-    
-    var zoomOutButton = chart.children.push(am5.Button.new(root, {
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingLeft: 12,
-        paddingRight: 12,
-        background: am5.Rectangle.new(root, {
-            fill: am5.color("#ff6b6b"),
-            cornerRadius: 5
-        })
-    }));
-    
-    zoomOutButton.label.set("text", "Zoom Out");
-    zoomOutButton.label.set("fill", am5.color("#000000"));
-    zoomOutButton.label.set("fontSize", 12);
-    
-    zoomOutButton.events.on("click", function() {
-        var currentProjection = chart.get("projection");
-        if (currentProjection && currentProjection.scale) {
-            currentProjection.scale = currentProjection.scale * 0.7;
-            chart.invalidateProjection();
-        }
-    });
-    
-    // Position buttons
+    // Position home button
     homeButton.set("x", 20);
     homeButton.set("y", 20);
-    zoomInButton.set("x", 20);
-    zoomInButton.set("y", 60);
-    zoomOutButton.set("x", 20);
-    zoomOutButton.set("y", 100);
+
+    // Create heat map legend
+    createHeatMapLegend();
 
     // Make stuff animate on load
     chart.appear(1000, 100);
