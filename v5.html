@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Football Network Map - V5</title>
+    <link rel="stylesheet" href="v5-styles.css">
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Connecting Dots</h1>
+                    <p>Interactive Map & Data Table</p>
+                </div>
+                <div class="version-link">
+                    <a href="index.html" class="version-btn">v1</a>
+                    <a href="v2.html" class="version-btn">v2</a>
+                    <!-- <a href="v3.html" class="version-btn">v3</a>
+                    <a href="v4.html" class="version-btn">v4</a> -->
+                    <a href="v5.html" class="version-btn">v5</a>
+                </div>
+            </div>
+        </header>
+        
+        <div class="split-container">
+            <!-- Left side: Map -->
+            <div class="map-section">
+                <div id="chartdiv" class="map-container"></div>
+                
+                <!-- Info tooltip -->
+                <div class="info-icon-container">
+                    <span class="info-icon">i</span>
+                    <span class="info-tooltip">Click on a country to see connections from that country</span>
+                </div>
+            </div>
+            
+            <!-- Right side: Data Table -->
+            <div class="table-section">
+                <div class="table-header">
+                    <h2>Global Football Network</h2>
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label for="countryFilter">Filter by Country:</label>
+                            <select id="countryFilter">
+                                <option value="">All Countries</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="roleFilter">Filter by Role:</label>
+                            <select id="roleFilter">
+                                <option value="">All Roles</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="sortBy">Sort by:</label>
+                            <select id="sortBy">
+                                <option value="connections">Connections</option>
+                                <option value="country">Country</option>
+                                <!-- <option value="role">Role</option> -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Country</th>
+                                <th>Role</th>
+                                <th>Name</th>
+                                <th>Club</th>
+                                <!-- <th>Connections</th> -->
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal for displaying results -->
+        <div id="interviewModal" class="modal-overlay">
+            <div class="modal-content">
+                <h2 id="modalTitle"></h2>
+                <ul id="interviewList" class="interview-list"></ul>
+                <button id="closeModal">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="v5-script.js"></script>
+</body>
+</html>
