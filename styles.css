@@ -19,26 +19,77 @@ body {
     padding: 40px;
 }
 
-/* Header styles */
-header {
-    margin-bottom: 30px;
-    padding: 20px 0;
+/* Hero Header */
+.hero-header {
+    text-align: center;
+    padding: 80px 0 60px 0;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 204, 255, 0.1) 100%);
+    border-radius: 20px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
 }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
+.hero-content {
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
-.header-text {
-    text-align: left;
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: #e0e0e0;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .version-link {
-    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Just Cause Section */
+.just-cause-section {
+    margin: 60px 0;
+    padding: 50px 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.just-cause-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.just-cause-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #ffffff;
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .version-btn {
@@ -59,21 +110,296 @@ header {
     box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
 }
 
-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+/* Legacy header styles - now handled by hero-header */
+
+.just-cause-text {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #ffffff;
+    font-weight: 400;
+    max-width: 800px;
+    margin: 20px auto 0 auto;
+    text-align: center;
+}
+
+/* Hero Statement Section */
+.hero-statement {
+    margin: 60px 0;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statement-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.statement-content h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 30px;
     background: linear-gradient(45deg, #00ff88, #00ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 10px;
-    text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
 }
 
-header p {
+.statement-content h2 em {
+    font-style: italic;
+    color: #00ff88;
+    -webkit-text-fill-color: #00ff88;
+}
+
+.statement-text {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    max-width: 900px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* Ecosystem Section */
+.ecosystem-section {
+    margin: 50px 0 40px 0;
+    padding: 30px 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ecosystem-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.ecosystem-content h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #ffffff;
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ecosystem-description {
     font-size: 1.1rem;
-    color: #cccccc;
-    opacity: 0.9;
+    line-height: 1.6;
+    color: #d0d0d0;
+    font-weight: 300;
+}
+
+/* Call to Action Section */
+.cta-section {
+    margin: 60px 0;
+    padding: 50px 0;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 204, 255, 0.05) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.cta-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.cta-content h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #ffffff;
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-content h3 em {
+    font-style: italic;
+    color: #00ff88;
+    -webkit-text-fill-color: #00ff88;
+}
+
+.cta-subheading {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    margin-bottom: 40px;
+    font-weight: 300;
+    font-style: italic;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-button {
+    display: block;
+    padding: 30px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button.primary {
+    background: linear-gradient(135deg, #00ff88 0%, #00ccff 100%);
+    color: #000000;
+    box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+}
+
+.cta-button.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 2px solid #00ff88;
+    backdrop-filter: blur(10px);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+}
+
+.cta-button.secondary:hover {
+    background: rgba(0, 255, 136, 0.1);
+    border-color: #00ccff;
+}
+
+.cta-title {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.cta-subtitle {
+    display: block;
+    font-size: 1rem;
+    opacity: 0.8;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* Strategic Foundation Section */
+.strategic-section {
+    margin: 60px 0;
+    padding: 50px 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.strategic-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.strategic-content h3 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #ffffff;
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.strategic-intro {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    margin-bottom: 50px;
+    font-weight: 300;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.strategic-points {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.strategic-point:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 400px;
+}
+
+.strategic-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.strategic-point:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 255, 136, 0.05);
+    border-color: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+}
+
+.point-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+.point-content h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.point-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    font-weight: 300;
 }
 
 /* Map container */
@@ -241,22 +567,109 @@ header p {
         padding: 10px;
     }
     
-    .header-content {
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+    
+    .hero-header {
+        padding: 60px 0 40px 0;
+        margin-bottom: 30px;
+    }
+    
+    .just-cause-content h2 {
+        font-size: 2rem;
+    }
+    
+    .just-cause-text {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+    
+    .statement-content h2 {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+    
+    .statement-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .ecosystem-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .ecosystem-description {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .cta-content h3 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    
+    .cta-subheading {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .cta-buttons {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cta-button {
+        padding: 25px 20px;
+    }
+    
+    .cta-title {
+        font-size: 1.2rem;
+    }
+    
+    .cta-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .strategic-content h3 {
+        font-size: 1.8rem;
+    }
+    
+    .strategic-intro {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+    }
+    
+    .strategic-points {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .strategic-point {
         flex-direction: column;
         text-align: center;
+        padding: 25px 20px;
     }
     
-    .header-text {
-        text-align: center;
-        margin-bottom: 15px;
+    .point-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+        margin: 0 auto 15px auto;
     }
     
-    .version-link {
-        margin-left: 0;
+    .point-content h4 {
+        font-size: 1.2rem;
     }
     
-    header h1 {
-        font-size: 2rem;
+    .point-content p {
+        font-size: 0.95rem;
     }
     
     #chartdiv {
