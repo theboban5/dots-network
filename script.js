@@ -363,7 +363,31 @@ function showConnectionModal(countryCode, countryName) {
         interpretationLi.style.fontWeight = "500";
         interviewList.appendChild(interpretationLi);
     } else {
-        modalTitle.textContent = countryName + " " + flagEmoji;
+        // For countries with no connections, try to get the full country name
+        var displayName = countryName;
+        
+        // If we got a country code (like "PE"), look up the full name
+        if (displayName && displayName.length === 2) {
+            // This is likely a country code, find the full name
+            var networkCountry = networkData.find(function(country) {
+                return countryNameToCode[country.country] === countryCode;
+            });
+            if (networkCountry) {
+                displayName = networkCountry.country;
+            }
+        }
+        
+        // If still no good name, try the reverse lookup
+        if (!displayName || displayName.length === 2) {
+            var networkCountry = networkData.find(function(country) {
+                return countryNameToCode[country.country] === countryCode;
+            });
+            if (networkCountry) {
+                displayName = networkCountry.country;
+            }
+        }
+        
+        modalTitle.textContent = displayName + " " + flagEmoji;
         interviewList.innerHTML = "<li style='text-align: center; padding: 20px; background: #f8f9fa; border-left: 4px solid #6c757d;'>No strong connections</li>";
     }
 
@@ -425,7 +449,7 @@ am5.ready(function() {
     polygonSeries.mapPolygons.template.events.on("click", function(ev) {
         var dataItem = ev.target.dataItem;
         var id = dataItem.get("id");
-        var countryName = dataItem.get("name");
+        var countryName = dataItem.get("name") || dataItem.get("id") || "Unknown Country";
         
         showConnectionModal(id, countryName);
     });

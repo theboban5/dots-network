@@ -62,28 +62,7 @@ body {
     color: #0066cc;
 }
 
-.version-links {
-    display: flex;
-    gap: 10px;
-}
 
-.version-btn {
-    display: inline-block;
-    padding: 6px 12px;
-    background: #f5f5f5;
-    color: #666;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.version-btn:hover,
-.version-btn.active {
-    background: #0066cc;
-    color: white;
-}
 
 /* Hero Section */
 .hero {
