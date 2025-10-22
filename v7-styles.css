@@ -321,10 +321,61 @@ body {
     text-align: center;
     color: #0066cc;
     font-weight: 500;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Color Guide */
+.color-guide {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.color-guide h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.color-gradient {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.color-bar {
+    height: 20px;
+    background: linear-gradient(to right, 
+        #DDDDDD 0%, 
+        #D1E7FF 20%, 
+        #A6D8FF 40%, 
+        #5DB3FF 60%, 
+        #227CFF 80%, 
+        #0047B3 100%);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #666;
+    padding: 0 10px;
+    margin-top: 5px;
+}
+
+.label-left {
+    text-align: left;
+    padding-right: 20px;
+}
+
+.label-right {
+    text-align: right;
+    padding-left: 20px;
 }
 
 .map-container {
@@ -708,6 +759,19 @@ body {
     
     .map-container {
         height: 400px;
+    }
+    
+    .color-guide h3 {
+        font-size: 1.1rem;
+    }
+    
+    .color-labels {
+        font-size: 0.8rem;
+    }
+    
+    .label-right {
+        text-align: center;
+        margin-top: 5px;
     }
 }
 
