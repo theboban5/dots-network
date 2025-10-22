@@ -154,6 +154,10 @@ var networkData = [
     {continent: "Europe", country: "Turkey", connection_number: 2, connection_strength: 2},
     {continent: "Europe", country: "Ukraine", connection_number: 2, connection_strength: 1},
     {continent: "Europe", country: "Wales", connection_number: 1, connection_strength: 3},
+    {continent: "Europe", country: "England", connection_number: 4, connection_strength: 4},
+    {continent: "Europe", country: "Scotland", connection_number: 2, connection_strength: 3},
+    {continent: "Europe", country: "Northern Ireland", connection_number: 1, connection_strength: 2},
+    {continent: "Europe", country: "United Kingdom", connection_number: 4, connection_strength: 4},
     {continent: "North America", country: "Antigua and Barbuda", connection_number: 0, connection_strength: 0},
     {continent: "North America", country: "Aruba", connection_number: 0, connection_strength: 0},
     {continent: "North America", country: "Bahamas", connection_number: 0, connection_strength: 0},
@@ -244,16 +248,16 @@ var countryNameToCode = {
     
     "Albania": "AL", "Andorra": "AD", "Armenia": "AM", "Austria": "AT", "Azerbaijan": "AZ",
     "Belarus": "BY", "Belgium": "BE", "Bosnia and Herzegovina": "BA", "Bulgaria": "BG",
-    "Croatia": "HR", "Cyprus": "CY", "Czechia": "CZ", "Denmark": "DK", "England": "GB",
+    "Croatia": "HR", "Cyprus": "CY", "Czechia": "CZ", "Denmark": "DK", "England": "GB-ENG",
     "Estonia": "EE", "Faroe Islands": "FO", "Finland": "FI", "France": "FR", "Georgia": "GE",
     "Germany": "DE", "Gibraltar": "GI", "Greece": "GR", "Hungary": "HU", "Iceland": "IS",
     "Ireland": "IE", "Israel": "IL", "Italy": "IT", "Kazakhstan": "KZ", "Kosovo": "XK",
     "Latvia": "LV", "Liechtenstein": "LI", "Lithuania": "LT", "Luxembourg": "LU", "Malta": "MT",
     "Moldova": "MD", "Montenegro": "ME", "Netherlands": "NL", "North Macedonia": "MK",
-    "Northern Ireland": "GB", "Norway": "NO", "Poland": "PL", "Portugal": "PT", "Romania": "RO",
-    "Russia": "RU", "San Marino": "SM", "Scotland": "GB", "Serbia": "RS", "Slovakia": "SK",
+    "Northern Ireland": "GB-NIR", "Norway": "NO", "Poland": "PL", "Portugal": "PT", "Romania": "RO",
+    "Russia": "RU", "San Marino": "SM", "Scotland": "GB-SCT", "Serbia": "RS", "Slovakia": "SK",
     "Slovenia": "SI", "Spain": "ES", "Sweden": "SE", "Switzerland": "CH", "Turkey": "TR",
-    "Ukraine": "UA", "Wales": "GB",
+    "Ukraine": "UA", "Wales": "GB-WLS", "United Kingdom": "GB",
     
     "Antigua and Barbuda": "AG", "Aruba": "AW", "Bahamas": "BS", "Barbados": "BB", "Belize": "BZ",
     "Bermuda": "BM", "Canada": "CA", "Cayman Islands": "KY", "Costa Rica": "CR", "Cuba": "CU",
@@ -321,6 +325,13 @@ function getHeatmapColor(score) {
 
 // Flag emoji generation
 function getFlagEmoji(countryCode) {
+    // Handle UK subdivisions
+    if (countryCode === "GB-ENG") return "🏴󠁧󠁢󠁥󠁮󠁧󠁿"; // England flag
+    if (countryCode === "GB-SCT") return "🏴󠁧󠁢󠁳󠁣󠁴󠁿"; // Scotland flag  
+    if (countryCode === "GB-WLS") return "🏴󠁧󠁢󠁷󠁬󠁳󠁿"; // Wales flag
+    if (countryCode === "GB-NIR") return "🇬🇧"; // UK flag for Northern Ireland
+    
+    // Handle regular country codes
     const codePoints = countryCode
         .toUpperCase()
         .split('')
@@ -340,7 +351,7 @@ function showConnectionModal(countryCode, countryName) {
     if (connectionData) {
         var displayCountryName = connectionData.country;
         modalTitle.textContent = displayCountryName + " " + flagEmoji;
-        interviewList.innerHTML = "";
+    interviewList.innerHTML = "";
 
         // Add interpretation only
         var interpretationLi = document.createElement("li");
@@ -388,8 +399,52 @@ function showConnectionModal(countryCode, countryName) {
         }
         
         modalTitle.textContent = displayName + " " + flagEmoji;
-        interviewList.innerHTML = "<li style='text-align: center; padding: 20px; background: #f8f9fa; border-left: 4px solid #6c757d;'>No strong connections</li>";
+        interviewList.innerHTML = "<li style='text-align: center; padding: 20px; background: #f8f9fa; border-left: 4px solid #6c757d;'>No strong connections...yet!</li>";
     }
+
+    modal.style.display = "flex";
+}
+
+// Special UK modal showing subdivisions
+function showUKModal() {
+    var modal = document.getElementById("interviewModal");
+    var modalTitle = document.getElementById("modalTitle");
+    var interviewList = document.getElementById("interviewList");
+
+    modalTitle.textContent = "United Kingdom 🇬🇧";
+    interviewList.innerHTML = "";
+
+    // UK subdivision data
+    var ukCountries = [
+        { name: "England", code: "GB-ENG", connections: 4, strength: 4, score: 16 },
+        { name: "Scotland", code: "GB-SCT", connections: 2, strength: 3, score: 6 },
+        { name: "Wales", code: "GB-WLS", connections: 1, strength: 3, score: 3 },
+        { name: "Northern Ireland", code: "GB-NIR", connections: 1, strength: 2, score: 2 }
+    ];
+
+    ukCountries.forEach(function(country) {
+        var countryLi = document.createElement("li");
+        var flagEmoji = getFlagEmoji(country.code);
+        var interpretation = "";
+        
+        if (country.score >= 12) {
+            interpretation = "Strong network presence with multiple high-quality connections";
+        } else if (country.score >= 8) {
+            interpretation = "Good network presence with solid connections";
+        } else if (country.score >= 4) {
+            interpretation = "Developing network presence";
+        } else {
+            interpretation = "Limited network presence";
+        }
+        
+        countryLi.innerHTML = "<strong>" + country.name + " " + flagEmoji + "</strong><br>" + interpretation;
+        countryLi.style.background = "#f8f9fa";
+        countryLi.style.borderLeft = "4px solid #28a745";
+        countryLi.style.padding = "15px";
+        countryLi.style.marginBottom = "10px";
+        countryLi.style.fontSize = "1rem";
+        interviewList.appendChild(countryLi);
+    });
 
     modal.style.display = "flex";
 }
@@ -451,7 +506,12 @@ am5.ready(function() {
         var id = dataItem.get("id");
         var countryName = dataItem.get("name") || dataItem.get("id") || "Unknown Country";
         
-        showConnectionModal(id, countryName);
+        // Special handling for UK - show subdivisions
+        if (id === "GB") {
+            showUKModal();
+        } else {
+            showConnectionModal(id, countryName);
+        }
     });
 
     // Make stuff animate on load
