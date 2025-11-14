@@ -61,7 +61,7 @@ var networkData = [
     {continent: "Asia", country: "Brunei", connection_number: 0, connection_strength: 0},
     {continent: "Asia", country: "Cambodia", connection_number: 2, connection_strength: 2},
     {continent: "Asia", country: "China", connection_number: 2, connection_strength: 2},
-    {continent: "Asia", country: "Chinese Taipei", connection_number: 2, connection_strength: 1},
+    {continent: "Asia", country: "Taiwan", connection_number: 2, connection_strength: 1},
     {continent: "Asia", country: "Guam", connection_number: 2, connection_strength: 4},
     {continent: "Asia", country: "Hong Kong", connection_number: 0, connection_strength: 0},
     {continent: "Asia", country: "India", connection_number: 2, connection_strength: 2},
@@ -237,7 +237,7 @@ var countryNameToCode = {
     "Tanzania": "TZ", "Togo": "TG", "Tunisia": "TN", "Uganda": "UG", "Zambia": "ZM", "Zimbabwe": "ZW",
     
     "Afghanistan": "AF", "Bahrain": "BH", "Bangladesh": "BD", "Bhutan": "BT", "Brunei": "BN",
-    "Cambodia": "KH", "China": "CN", "Chinese Taipei": "TW", "Guam": "GU", "Hong Kong": "HK",
+    "Cambodia": "KH", "China": "CN", "Chinese Taipei": "Taiwan", "Guam": "GU", "Hong Kong": "HK",
     "India": "IN", "Indonesia": "ID", "Iran": "IR", "Iraq": "IQ", "Japan": "JP", "Jordan": "JO",
     "Kuwait": "KW", "Kyrgyz Republic": "KG", "Laos": "LA", "Lebanon": "LB", "Macau": "MO",
     "Malaysia": "MY", "Maldives": "MV", "Mongolia": "MN", "Myanmar": "MM", "Nepal": "NP",
