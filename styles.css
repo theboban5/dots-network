@@ -289,10 +289,67 @@ body {
     font-size: 1.2rem;
     text-align: center;
     color: #4a5568;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Network Images */
+.network-images {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.network-image-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 200px;
+}
+
+.network-image {
+    width: 200px;
+    height: 150px;
+    object-fit: contain;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.network-image-item > .network-caption-2 {
+    width: 100%;
+    align-self: flex-start;
+}
+
+.network-image:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.network-caption {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 0 10px 0;
+    max-width: 200px;
+}
+
+.network-caption-2 {
+    font-size: 0.9rem;
+    color: #4a5568;
+    line-height: 1.6;
+    text-align: left;
+    margin: 0;
+    max-width: 200px;
 }
 
 .network-emphasis {
@@ -304,6 +361,57 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Network Toggle Button */
+.network-toggle-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.network-toggle-btn {
+    background: #0066cc;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.network-toggle-btn:hover {
+    background: #0052a3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.network-toggle-btn.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.network-map-section {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Color Guide */
@@ -695,8 +803,9 @@ body {
     }
     
     .hero-image {
-        width: 150px;
-        height: 150px;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
     }
     
     .approach-grid {
@@ -738,6 +847,24 @@ body {
     
     .map-container {
         height: 400px;
+    }
+    
+    .network-images {
+        gap: 20px;
+    }
+    
+    .network-image-item {
+        max-width: 150px;
+    }
+    
+    .network-image {
+        width: 150px;
+        height: 112px;
+    }
+    
+    .network-caption {
+        font-size: 0.85rem;
+        max-width: 150px;
     }
     
     .color-guide h3 {

@@ -531,3 +531,21 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 };
+
+// Network map toggle functionality
+var networkToggle = document.getElementById("networkToggle");
+var networkMapSection = document.getElementById("networkMapSection");
+
+if (networkToggle && networkMapSection) {
+    networkToggle.onclick = function() {
+        if (networkMapSection.style.display === "none") {
+            networkMapSection.style.display = "block";
+            networkToggle.classList.add("active");
+            networkToggle.querySelector(".toggle-text").textContent = "hide our global network";
+        } else {
+            networkMapSection.style.display = "none";
+            networkToggle.classList.remove("active");
+            networkToggle.querySelector(".toggle-text").textContent = "see our global network";
+        }
+    };
+}
